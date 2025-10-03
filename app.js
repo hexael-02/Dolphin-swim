@@ -1,5 +1,5 @@
 // ======================================================================
-// 1. CLASE DOLPHIN (Delfín - Animación por Código: Subir/Bajar y Rotar)
+// 1. CLASE DOLPHIN (Delfín - Animación por Código
 // ======================================================================
 class Dolphin {
     constructor(game) {
@@ -193,8 +193,24 @@ class Game {
                 }
             }
         });
-    }
+        // 2. Eventos de BOTONES TÁCTILES (para móvil)
+     const btnUp = document.getElementById('btnUp');
+    const btnDown = document.getElementById('btnDown');
     
+    if (btnUp) {
+        btnUp.addEventListener('touchstart', (e) => {
+            e.preventDefault(); 
+            if (this.isGameRunning) this.dolphin.changeLane(-1);
+        });
+    }
+
+    if (btnDown) {
+        btnDown.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            if (this.isGameRunning) this.dolphin.changeLane(1);
+        });
+    }
+}
     start() {
         if (this.isGameRunning) return;
         this.isGameRunning = true;
@@ -291,7 +307,7 @@ class Game {
             <h2>Dolphin swim 🐬</h2>
             <p>Esquiva la basura moviéndote entre los canales de agua .</p>
             <p>Controles: **Flecha Arriba/Abajo** o **W/S**</p>
-            <button onclick="game.start()">Presiona ESPACIO o haz clic para Empezar</button>
+            <button id="btnStart" onclick="game.start()">Presiona ESPACIO o haz clic para Empezar</button>
         `;
         if (!document.querySelector('.game-message')) document.getElementById('game-container').appendChild(messageDiv);
         messageDiv.style.display = 'block';
@@ -305,12 +321,25 @@ class Game {
             <p>Puntuación Final: ${this.score}</p>
             <button onclick="game.start()">Volver a Jugar</button>
         `;
+        if (!document.querySelector('.game-message')) document.getElementById('game-container').appendChild(messageDiv);
+    messageDiv.style.display = 'block';
+
+    // Configura el botón recién creado.
+    const btnStart = document.getElementById('btnStart');
+    if (btnStart) {
+        btnStart.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            this.start();
+        });
+        
+        btnStart.addEventListener('click', () => {
+            this.start();
+        });
+    }
         messageDiv.style.display = 'block';
         this.isGameRunning = false;
     }
 }
-
-// ----------------------------------------------------------------------
 
 // Inicializar el juego y hacerlo global para que el HTML pueda acceder a 'game.start()'
 window.game = new Game('gameCanvas');
