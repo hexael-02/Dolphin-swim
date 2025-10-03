@@ -110,7 +110,7 @@ ESTILOS DE CONTROLES MÓVILES (NUEVOS)
     right: 20px;
     z-index: 100;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     /* Ocultar en pantallas grandes para evitar que se solapen con el escritorio */
     /* Usar @media queries sería ideal, pero por ahora solo ajustaremos el estilo base */
 }
