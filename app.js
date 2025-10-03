@@ -11,7 +11,7 @@ class Dolphin {
 
         // Cargar tu imagen original
         this.image = new Image();
-        this.image.src = 'delfin100x70.png'; // <--- Usamos TU IMAGEN VISIBLE
+        this.image.src = 'delfin140x90.png'; // <--- Usamos TU IMAGEN VISIBLE
         this.imageLoaded = false;
         this.image.onload = () => {
             this.imageLoaded = true;
